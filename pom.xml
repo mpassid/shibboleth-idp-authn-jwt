@@ -169,9 +169,11 @@ THE SOFTWARE.
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
+                    <tarLongFileMode>posix</tarLongFileMode>
                     <descriptor>src/main/assembly/dep.xml</descriptor>
                     <finalName>shibboleth-idp-authn-jwt-${project.version}</finalName>
                     <appendAssemblyId>false</appendAssemblyId>
+                    <outputDirectory>target</outputDirectory>
                 </configuration>
                 <executions>
                     <execution>
