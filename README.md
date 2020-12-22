@@ -2,16 +2,15 @@
 
 [![License](http://img.shields.io/:license-mit-blue.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://travis-ci.org/mpassid/shibboleth-idp-authn-jwt.svg?branch=master)](https://travis-ci.org/mpassid/shibboleth-idp-authn-jwt)
-[![Coverage Status](https://coveralls.io/repos/github/mpassid/shibboleth-idp-authn-jwt/badge.svg?branch=master)](https://coveralls.io/github/mpassid/shibboleth-idp-authn-jwt?branch=master)
 
 ## Overview
 
-This module implements an authentication flow for [Shibboleth Identity Provider v3](https://wiki.shibboleth.net/confluence/display/IDP30/Home) exploiting attributes provided by 
+This module implements an authentication flow for [Shibboleth Identity Provider v4](https://wiki.shibboleth.net/confluence/display/IDP4/Home) exploiting attributes provided by 
 3rd party via JWT token.
 
 ## Prerequisities and compilation
 
-- Java 7+
+- Java 11+
 - [Apache Maven 3](https://maven.apache.org/)
 
 ```

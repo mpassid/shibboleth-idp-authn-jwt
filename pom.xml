@@ -25,21 +25,20 @@ THE SOFTWARE.
     <parent>
         <groupId>net.shibboleth.idp</groupId>
         <artifactId>idp-parent</artifactId>
-        <version>3.3.1</version>
+        <version>4.0.0</version>
     </parent>
     <groupId>fi.mpass</groupId>
     <artifactId>idp-authn-impl-jwt</artifactId>
-    <version>0.9.5</version>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.version>3.5.1</maven.compiler.version>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
-        <shib.idp.version>3.2.1</shib.idp.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <shib.idp.version>4.0.0</shib.idp.version>
         <checkstyle.configLocation>mpassid-checkstyle.xml</checkstyle.configLocation>
-        <checkstyle.plugin.version>2.17</checkstyle.plugin.version>
+        <automatic.module.name>fi.mpass.authn.jwt.impl</automatic.module.name>
     </properties>
 
     <repositories>
@@ -72,7 +71,7 @@ THE SOFTWARE.
         <dependency>
            <groupId>com.nimbusds</groupId>
            <artifactId>nimbus-jose-jwt</artifactId>
-           <version>4.33</version>
+           <version>8.8</version>
         </dependency>
         <dependency>
             <groupId>net.shibboleth.idp</groupId>
@@ -89,23 +88,18 @@ THE SOFTWARE.
             <artifactId>idp-profile-api</artifactId>
             <version>${shib.idp.version}</version>
         </dependency>
-        <dependency>
-            <groupId>net.shibboleth.ext</groupId>
-            <artifactId>spring-extensions</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${spring-webflow.groupId}</groupId>
-            <artifactId>spring-webflow</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity</artifactId>
-        </dependency>
         <!-- Provided Dependencies -->
 
         <!-- Runtime Dependencies -->
 
         <!-- Test Dependencies -->
+        <dependency>
+            <groupId>${opensaml.groupId}</groupId>
+            <artifactId>opensaml-core</artifactId>
+            <version>${opensaml.version}</version>
+            <scope>test</scope>
+            <type>test-jar</type>
+        </dependency>
         <dependency>
             <groupId>${opensaml.groupId}</groupId>
             <artifactId>opensaml-profile-api</artifactId>
@@ -170,7 +164,7 @@ THE SOFTWARE.
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
                     <tarLongFileMode>posix</tarLongFileMode>
-                    <descriptor>src/main/assembly/dep.xml</descriptor>
+                    <descriptors>src/main/assembly/dep.xml</descriptors>
                     <finalName>shibboleth-idp-authn-jwt-${project.version}</finalName>
                     <appendAssemblyId>false</appendAssemblyId>
                     <outputDirectory>target</outputDirectory>
@@ -192,25 +186,6 @@ THE SOFTWARE.
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
-                <version>2.7</version>
-                <configuration>
-                    <formats>
-                        <format>xml</format>
-                        <format>html</format>
-                    </formats>
-                    <maxmem>256m</maxmem>
-                    <!-- aggregated reports for multi-module projects -->
-                    <aggregate>true</aggregate>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.eluder.coveralls</groupId>
-                <artifactId>coveralls-maven-plugin</artifactId>
-                <version>4.1.0</version>
             </plugin>
         </plugins>
     </build>

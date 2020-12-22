@@ -45,14 +45,14 @@ import fi.mpass.shibboleth.authn.impl.ValidateJwtTokenAuthentication;
 import net.shibboleth.idp.authn.AuthenticationResult;
 import net.shibboleth.idp.authn.AuthnEventIds;
 import net.shibboleth.idp.authn.context.AuthenticationContext;
-import net.shibboleth.idp.authn.impl.PopulateAuthenticationContextTest;
+import net.shibboleth.idp.authn.impl.BaseAuthenticationContextTest;
 import net.shibboleth.idp.profile.ActionTestingSupport;
 import net.shibboleth.utilities.java.support.logic.ConstraintViolationException;
 
 /**
  * Unit tests for {@link ValidateJwtTokenAuthentication}.
  */
-public class ValidateJwtTokenAuthenticationTest extends PopulateAuthenticationContextTest {
+public class ValidateJwtTokenAuthenticationTest extends BaseAuthenticationContextTest {
     
     /** The action to be tested. */
     private ValidateJwtTokenAuthentication action;
@@ -88,7 +88,7 @@ public class ValidateJwtTokenAuthenticationTest extends PopulateAuthenticationCo
     @Test public void testMissingFlow() throws Exception {
         action.initialize();
         final Event event = action.execute(src);
-        ActionTestingSupport.assertEvent(event, EventIds.INVALID_PROFILE_CTX);
+        ActionTestingSupport.assertEvent(event, AuthnEventIds.INVALID_AUTHN_CTX);
     }
 
     /**
