@@ -41,12 +41,12 @@ import com.nimbusds.jose.JWSSigner;
 import com.nimbusds.jose.Payload;
 import com.nimbusds.jose.crypto.MACSigner;
 
-import fi.mpass.shibboleth.authn.impl.ValidateJwtTokenAuthentication;
 import net.shibboleth.idp.authn.AuthenticationResult;
 import net.shibboleth.idp.authn.AuthnEventIds;
 import net.shibboleth.idp.authn.context.AuthenticationContext;
-import net.shibboleth.idp.authn.impl.BaseAuthenticationContextTest;
-import net.shibboleth.idp.profile.ActionTestingSupport;
+import net.shibboleth.idp.authn.impl.testing.BaseAuthenticationContextTest;
+import net.shibboleth.idp.profile.testing.ActionTestingSupport;
+import net.shibboleth.utilities.java.support.component.ComponentInitializationException;
 import net.shibboleth.utilities.java.support.logic.ConstraintViolationException;
 
 /**
@@ -68,8 +68,9 @@ public class ValidateJwtTokenAuthenticationTest extends BaseAuthenticationContex
     
     private String jwtParameterName;
     
-    /** {@inheritDoc} */
-    @BeforeMethod public void setUp() throws Exception {
+    /** {@inheritDoc} 
+     * @throws ComponentInitializationException */
+    @BeforeMethod public void setUp() throws ComponentInitializationException {
         super.setUp();
         uidConfig = "username";
         uid = "mockUser";
