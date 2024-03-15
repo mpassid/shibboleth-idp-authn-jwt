@@ -37,7 +37,7 @@ THE SOFTWARE.
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <nimbusds-version>9.23</nimbusds-version>
+        <nimbusds-version>9.37.2</nimbusds-version>
         <shib.idp.version>4.2.1</shib.idp.version>
         <checkstyle.configLocation>mpassid-checkstyle.xml</checkstyle.configLocation>
         <automatic.module.name>fi.mpass.authn.jwt.impl</automatic.module.name>
