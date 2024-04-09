@@ -25,7 +25,9 @@ package fi.mpass.shibboleth.authn.impl;
 import java.security.Principal;
 import java.util.Set;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.annotation.Nonnull;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.opensaml.profile.action.EventIds;
 import org.springframework.mock.web.MockHttpServletRequest;
@@ -46,8 +48,9 @@ import net.shibboleth.idp.authn.AuthnEventIds;
 import net.shibboleth.idp.authn.context.AuthenticationContext;
 import net.shibboleth.idp.authn.impl.testing.BaseAuthenticationContextTest;
 import net.shibboleth.idp.profile.testing.ActionTestingSupport;
-import net.shibboleth.utilities.java.support.component.ComponentInitializationException;
-import net.shibboleth.utilities.java.support.logic.ConstraintViolationException;
+import net.shibboleth.shared.component.ComponentInitializationException;
+import net.shibboleth.shared.logic.ConstraintViolationException;
+import net.shibboleth.shared.primitive.NonnullSupplier;
 
 /**
  * Unit tests for {@link ValidateJwtTokenAuthentication}.
@@ -80,8 +83,18 @@ public class ValidateJwtTokenAuthenticationTest extends BaseAuthenticationContex
         action = new ValidateJwtTokenAuthentication(sharedSecret, jwtParameterName);
         action.setUsernameId(uidConfig);
         Assert.assertEquals(uidConfig, action.getUsernameId());
-        action.setHttpServletRequest((HttpServletRequest) src.getExternalContext().getNativeRequest());
+       
+        action.setHttpServletRequestSupplier(new NonnullSupplier<HttpServletRequest>() {
+            
+            @Override
+            public MockHttpServletRequest get() {
+                return (MockHttpServletRequest) src.getExternalContext().getNativeRequest();
+            }
+            
+        });
+        
     }
+    
 
     /**
      * Runs action without attempted flow.
@@ -114,7 +127,15 @@ public class ValidateJwtTokenAuthenticationTest extends BaseAuthenticationContex
      * Runs action without {@link HttpServletRequest}.
      */
     @Test public void testMissingServlet() throws Exception {
-        action.setHttpServletRequest(null);
+        action.setHttpServletRequestSupplier(new NonnullSupplier<HttpServletRequest>() {
+
+            @Override
+            @Nonnull
+            public HttpServletRequest get() {
+                return null;
+            }
+            
+        }); 
         action.initialize();
         prc.getSubcontext(AuthenticationContext.class, false).setAttemptedFlow(authenticationFlows.get(0));
         final Event event = action.execute(src);
