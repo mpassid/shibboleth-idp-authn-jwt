@@ -30,7 +30,7 @@ THE SOFTWARE.
     </parent>
     <groupId>fi.mpass</groupId>
     <artifactId>idp-authn-impl-jwt</artifactId>
-    <version>1.2</version>
+    <version>1.2-rc2</version>
     <packaging>jar</packaging>
 
     <properties>
