@@ -26,23 +26,23 @@ THE SOFTWARE.
     <parent>
         <groupId>net.shibboleth</groupId>
         <artifactId>parent</artifactId>
-        <version>11.3.3</version>
+        <version>17.0.2</version>
     </parent>
     <groupId>fi.mpass</groupId>
     <artifactId>idp-authn-impl-jwt</artifactId>
-    <version>1.1</version>
+    <version>1.2</version>
     <packaging>jar</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <nimbusds-version>9.23</nimbusds-version>
-        <shib.idp.version>4.2.1</shib.idp.version>
+        <shib.idp.version>5.0.0</shib.idp.version>
         <checkstyle.configLocation>mpassid-checkstyle.xml</checkstyle.configLocation>
         <automatic.module.name>fi.mpass.authn.jwt.impl</automatic.module.name>
         <opensaml.groupId>org.opensaml</opensaml.groupId>
-        <opensaml.version>4.2.0</opensaml.version>
+        <opensaml.version>5.0.0</opensaml.version>
     </properties>
 
     <repositories>
@@ -94,8 +94,8 @@ THE SOFTWARE.
         </dependency>
         <!-- Provided Dependencies -->
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
             <scope>provided</scope>
         </dependency>
 
@@ -104,10 +104,9 @@ THE SOFTWARE.
         <!-- Test Dependencies -->
         <dependency>
             <groupId>${opensaml.groupId}</groupId>
-            <artifactId>opensaml-core</artifactId>
+            <artifactId>opensaml-core-impl</artifactId>
             <version>${opensaml.version}</version>
             <scope>test</scope>
-            <type>test-jar</type>
         </dependency>
         <dependency>
             <groupId>${opensaml.groupId}</groupId>
@@ -118,10 +117,22 @@ THE SOFTWARE.
         </dependency>
         <dependency>
             <groupId>${opensaml.groupId}</groupId>
+            <artifactId>opensaml-testing</artifactId>
+            <version>${opensaml.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>${opensaml.groupId}</groupId>
             <artifactId>opensaml-security-impl</artifactId>
             <version>${opensaml.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+			<groupId>net.shibboleth.idp</groupId>
+			<artifactId>idp-testing</artifactId>
+			<version>${shib.idp.version}</version>
+			<scope>test</scope>
+		</dependency>
         <dependency>
             <groupId>net.shibboleth.idp</groupId>
             <artifactId>idp-profile-api</artifactId>
