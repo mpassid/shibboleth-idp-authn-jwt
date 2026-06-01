@@ -15,8 +15,9 @@
    <bean id="ValidateJwtTokenAuthentication"
             class="fi.mpass.shibboleth.authn.impl.ValidateJwtTokenAuthentication" scope="prototype"
             p:httpServletRequestSupplier-ref="shibboleth.HttpServletRequestSupplier"
-            p:usernameId="id">
-      <constructor-arg value="shared_secret" />
+            p:resultCachingPredicate="#{getObject('shibboleth.authn.Jwt.resultCachingPredicate')}"
+            p:usernameId="%{idp.authn.jwt.usernameId:id}">
+      <constructor-arg value="%{idp.authn.jwt.sharedSecret:mockSharedSecret}" />
       <constructor-arg value="jwt" />
    </bean>
 
